@@ -1,7 +1,6 @@
 class PagesController < ApplicationController
 	
-
-	def salut 
+	def index
 
 	end
 end

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  
- get '/salut', to: 'pages#salut'
- 
+ devise_for :users
+ root to: "pages#index"
+ resources :rooms
+
 end
