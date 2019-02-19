@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  # GET /users/:id
+ before_filter :authenticate_user!
   def show
     @user = User.find(params[:id])
     # Rails does the magic.
