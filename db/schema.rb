@@ -20,11 +20,11 @@ ActiveRecord::Schema.define(version: 2019_02_15_145716) do
     t.datetime "created_at"
   end
 
-  create_table "user_rooms", force: :cascade do |t|
+  create_table "user_room", force: :cascade do |t|
     t.bigint "users_id"
-    t.bigint "rooms_id"
-    t.index ["rooms_id"], name: "index_user_rooms_on_rooms_id"
-    t.index ["users_id"], name: "index_user_rooms_on_users_id"
+    t.bigint "room_id"
+    t.index ["room_id"], name: "index_room_on_room_id"
+    t.index ["user_id"], name: "index_user_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
