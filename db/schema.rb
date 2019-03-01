@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_15_145716) do
+ActiveRecord::Schema.define(version: 2019_03_01_144722) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,14 +20,15 @@ ActiveRecord::Schema.define(version: 2019_02_15_145716) do
     t.datetime "created_at"
   end
 
-  create_table "user_room", force: :cascade do |t|
-    t.bigint "users_id"
-    t.bigint "room_id"
-    t.index ["room_id"], name: "index_room_on_room_id"
-    t.index ["user_id"], name: "index_user_on_user_id"
+  create_table "rooms_users", id: false, force: :cascade do |t|
+    t.bigint "room_id", null: false
+    t.bigint "user_id", null: false
+    t.index ["room_id", "user_id"], name: "index_rooms_users_on_room_id_and_user_id"
+    t.index ["user_id", "room_id"], name: "index_rooms_users_on_user_id_and_room_id"
   end
 
   create_table "users", force: :cascade do |t|
+    t.string "name", default: "", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -35,11 +36,8 @@ ActiveRecord::Schema.define(version: 2019_02_15_145716) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "name", default: "", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "user_rooms", "rooms", column: "rooms_id"
-  add_foreign_key "user_rooms", "users", column: "users_id"
 end

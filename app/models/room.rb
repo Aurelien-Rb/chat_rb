@@ -1,4 +1,5 @@
 class Room < ApplicationRecord
+	has_many :room_user
 
-belongs_to :user_room
+	
 end
