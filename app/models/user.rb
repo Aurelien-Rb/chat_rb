@@ -3,6 +3,11 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  has_many :room
-  has_many :room, through: :room_users
+  
+  has_and_belongs_to_many :rooms
+  has_many :messages
+
+  rails_admin do 
+  	object_label_method :email
+  end
 end
