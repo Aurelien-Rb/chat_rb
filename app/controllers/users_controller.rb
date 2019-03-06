@@ -10,8 +10,8 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
-  def sign_in
-   
+  def user
+    @user = current_user.id
   end
 
 end

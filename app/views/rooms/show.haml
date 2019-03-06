@@ -1,0 +1,11 @@
+#container
+  %h1.room
+    = @room.name
+    %div.room
+    - @msg = @room.messages.order(created_at: :DESC)
+    - @msg.each do |p|
+      %div
+        = p.content
+  .form-text.col-12
+    %textarea.form-control.col-10
+    %button.btn-outline-primary.col-1 Envoyer

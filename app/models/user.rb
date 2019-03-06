@@ -6,8 +6,9 @@ class User < ApplicationRecord
   
   has_and_belongs_to_many :rooms
   has_many :messages
+	
 
-  rails_admin do 
-  	object_label_method :email
-  end
+  	rails_admin do 
+  		object_label_method :email
+  	end
 end
