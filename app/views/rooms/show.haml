@@ -1,11 +1,25 @@
 #container
   %h1.room
     = @room.name
-    %div.room
-    - @msg = @room.messages.order(created_at: :DESC)
-    - @msg.each do |p|
-      %div
-        = p.content
+  .rooms.col-9
+    %ul
+      - @msg = @room.messages.order(created_at: :ASC)
+      - @msg_id = @msg.ids
+      - @msg.each do |p|
+        - if p.user_id == current_user.id
+          %li.me.col-lg-12
+            = p.content
+        -else
+          %li.friend.col-lg-12
+            = p.content
+      
   .form-text.col-12
-    %textarea.form-control.col-10
-    %button.btn-outline-primary.col-1 Envoyer
+    = form_for @message, url: room_messages_path(@room) do |f|
+      = f.text_area :content
+      = f.submit "Poster", class: "btn btn-info"
+  .list-user.col-1
+    %ul
+    - @list_user = @room.users
+    - @list_user.each do |user|
+      %li
+        = link_to user.name, user_path(user)     
