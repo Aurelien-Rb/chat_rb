@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
 
-  resources :friendships
+  resources :friendships, except: [:edit]
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
  devise_for :users
  root to: "pages#index"
  resources :rooms, except: [:create]
  resources :user_room
  resources :messages, except: [:create]
- resources :users
+ resources :users, except: [:edit, :destroy]
 
  resources :user, only: [:create] do 
  	resources :friendships,only: [:create]
