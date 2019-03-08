@@ -1,5 +1,12 @@
 %p
   %strong User:
   = @user.name
+  - if current_user.id == @user.id
+    %p C'est votre profil
+  - else 
+    = form_for params[:id], url: user_friendships_path(@user) do |f|
+      = f.submit "ajouter en ami", class: "btn btn-info"
+   
+    = form_for params[:id], url: rooms_path(@user) do |f|
+      = f.submit "Conversation", class: "btn btn-info"
 
-  

@@ -11,5 +11,9 @@ class RoomsController < ApplicationController
 		@message = Message.new
 	end
 
+	def create 
+		@user = current_user.id
+	end 
+
 	
 end

@@ -18,8 +18,8 @@
       = f.text_area :content
       = f.submit "Poster", class: "btn btn-info"
   .list-user.col-1
-    %ul
+    %p Utilisateurs : 
     - @list_user = @room.users
     - @list_user.each do |user|
-      %li
+      .badge.badge-success
         = link_to user.name, user_path(user)     

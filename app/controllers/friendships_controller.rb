@@ -4,12 +4,14 @@ class FriendshipsController < ApplicationController
   # GET /friendships
   # GET /friendships.json
   def index
+    @user = params['user_id']
     @friendships = Friendship.all
   end
 
   # GET /friendships/1
   # GET /friendships/1.json
   def show
+    @user = current_user
   end
 
   # GET /friendships/new
@@ -24,7 +26,9 @@ class FriendshipsController < ApplicationController
   # POST /friendships
   # POST /friendships.json
   def create
-    @friendship = Friendship.new(friendship_params)
+    @friend = params['user_id']
+    @user = current_user 
+    @friendship = Friendship.new(user: @user, friend_id: @friend)
 
     respond_to do |format|
       if @friendship.save
@@ -33,6 +37,7 @@ class FriendshipsController < ApplicationController
       else
         format.html { render :new }
         format.json { render json: @friendship.errors, status: :unprocessable_entity }
+
       end
     end
   end

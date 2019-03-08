@@ -10,7 +10,6 @@ class MessagesController < ApplicationController
     @user = current_user
     @room = params['room_id']
  		@message = Message.new(content: params['message']['content'],user: @user,room_id: @room)
-    @message.errors.full_messages
     @message.save
 
     redirect_to room_path(@room)
