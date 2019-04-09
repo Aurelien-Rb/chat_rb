@@ -3,6 +3,9 @@
   = @user.name
   - if current_user.id == @user.id
     %p C'est votre profil
+
+    = form_for params[:id], url: destroy_user_session_path(@user) do |f|
+      = f.submit "Déconnection", class: "btn btn-danger"
   - else 
     = form_for params[:id], url: user_friendships_path(@user) do |f|
       = f.submit "ajouter en ami", class: "btn btn-info"

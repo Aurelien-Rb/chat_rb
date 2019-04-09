@@ -2,5 +2,5 @@
   - @user_rooms = current_user.rooms.ids
     - @user_rooms.each do |p|
     .user-room.col-12.alert.alert-primary
-      = link_to Room.find(p).name, room_path(Room.find(p).id)
+      = link_to r = Room.find(p).name , room_path(Room.find(p).id)
       

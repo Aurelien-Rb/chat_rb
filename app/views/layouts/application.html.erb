@@ -17,8 +17,8 @@
 
   <body>
     <div class="navbar navbar-dark bg-dark shadow-sm col-sm-12">
-        <ul class="nav">
-          <li class="active">
+        <div class="nav">
+          <li>
             <%= link_to image_tag("logo", class: "logo"), root_path %>
           </li>
           <% if user_signed_in? %>
@@ -45,7 +45,7 @@
             <li><%= link_to "S'inscrire", new_user_registration_path %></li>
           <% end %>
          
-        </ul> 
+        </div> 
         
     </div>
     <%= yield %>
